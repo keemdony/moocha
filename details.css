@@ -345,109 +345,95 @@ li {
     padding: 10px 30px;
 }
 
-
-.menu-list {
-    width: 80%;
-    margin: 50px 0;
-
-    .list-page {
-        display: none;
-
-        .scroll-item {
-            width: 20%;
-            height: 327px;
-            color: #382F2D;
-            text-align: center;
-            margin: 20px;
-            box-sizing: border-box;
-
-            h5 {
-                font-size: 20px;
-                font-weight: normal;
-            }
-
-            img {
-                width: 240px;
-            }
-        }
-    }
-
-    .list-page.show {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-}
-
 .pd-info {
     width: 70%;
+    display: flex;
+    justify-content: center;
 
     .info-wrap {
-        width: 80%;
+        width: 100%;
         display: flex;
         justify-content: center;
         margin: 100px 0;
     }
-}
 
-
-.info-img {
-    width: 374px;
-    background-color: #382F2D;
-}
-
-.info-text {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-
-    h3 {
-        font-size: 30px;
-        font-weight: 700;
+    .info-img {
+        width: 374px;
     }
 
-    p {
-        font-size: 24px;
-        font-weight: 700;
-        color: #746d6c;
-        margin-top: 10px;
-    }
-
-    .pd-table {
-        width: 100%;
+    .info-text {
+        width: 80%;
         display: flex;
-        justify-content: start;
-    }
+        flex-direction: column;
+        justify-content: space-around;
+        margin-left: 30px;
 
-    table {
-        width: 100%;
-        text-align: center;
-
-        caption {
+        h3 {
             font-size: 30px;
             font-weight: 700;
         }
 
-        th {
-            height: 50px;
-            background-color: #F7EEDD;
+        p {
+            font-size: 24px;
+            font-weight: 700;
             color: #746d6c;
+            margin-top: 10px;
         }
 
-        td{
-            font-size: 18px;
+        .pd-table {
+            width: 100%;
+            display: flex;
         }
 
-        tfoot{
-            border: none;
-            text-align: start;
-        }
+        table {
+            width: 100%;
+            text-align: center;
+            font-weight: 300;
+            border-collapse: collapse;
+            /* 이중선 제거하고 한 줄로 만들기 */
+            border: 1px solid #ccc;
+            border-top: 1px solid #382F2D;
+            white-space: nowrap;
+            table-layout: auto;
+            /* 내용에 따라 셀 크기 조절 */
 
+            caption {
+                text-align: start;
+                font-size: 30px;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+
+            th {
+                height: 50px;
+                background-color: #F7EEDD;
+                color: #746d6c;
+                font-weight: 500;
+                padding: 8px;
+                width: 12%;
+            }
+
+            td {
+                font-size: 18px;
+                padding: 0 8px;
+                width: 12%;
+                color: #746d6c;
+            }
+
+            th:first-child {
+                width: 25%;
+
+            }
+
+            tfoot {
+                border: none;
+                text-align: start;
+            }
+
+        }
     }
+
 }
-
-
 
 footer {
     display: flex;
@@ -568,21 +554,43 @@ footer {
 
 @media screen and (max-width: 1450px) {
 
-    .bar-wrap {
-        width: 80%;
-    }
 
-    .menu-bar {
-        display: flex;
-        transition: transform 0.4s ease;
-        will-change: transform;
-    }
+    .pd-info {
+        width: 100%;
 
-    .menu-list {
-        .list-page.show {
-            display: flex;
-            flex-wrap: wrap;
+        .info-wrap {
+            width: 60%;
         }
+
+        .info-img {
+            width: 40%;
+
+            img {
+                width: 250px;
+            }
+        }
+
+        .info-text {
+
+            h3 {
+                font-size: 26px;
+            }
+
+            p {
+                font-size: 20px;
+            }
+
+            table {
+                caption {
+                    font-size: 26px;
+                }
+
+                td {
+                    font-size: 16px;
+                }
+            }
+        }
+
     }
 }
 
@@ -620,13 +628,29 @@ footer {
         will-change: transform;
     }
 
-    .menu-list {
-        width: 80%;
-        margin: 50px 0;
+    .pd-info {
+    width: 90%;
 
-        .list-page {
-            .scroll-item {
-                margin: 50px;
+    .info-wrap {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        margin: 100px 0;
+    }
+
+    .info-img {
+        img{
+            width: 374px;
+        }
+    }
+
+    .info-text {
+
+        table {
+            white-space: wrap;
+
+            caption{
+                margin-top: 10px;
             }
         }
     }
