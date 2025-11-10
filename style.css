@@ -1,0 +1,1234 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: pretendard;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style-type: none;
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    background-color: #FCF6ED;
+    position: relative;
+}
+
+.top-section {
+    width: 100%;
+    height: 110px;
+    /* 스크롤 올렸을때 헤더 내려오게 고정 */
+    position: fixed;
+    z-index: 1000;
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1400px;
+        height: 100%;
+        margin: 0 auto;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* .hide{
+    visibility: hidden;
+} */
+
+    nav>ul {
+        display: flex;
+        gap: 20px;
+        height: 100%;
+    }
+
+    nav>ul>li {
+        line-height: 110px;
+        text-align: center;
+    }
+
+    nav>ul>li>a {
+        height: 100%;
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+        white-space: nowrap;
+        position: relative;
+    }
+
+    nav>ul>li:hover .sub-menu {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        height: 60px;
+    }
+
+    nav>ul>li>a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        /*호버전에는 밑줄*/
+        height: 2px;
+        left: 0;
+        bottom: -3px;
+        /*글자아래 위치*/
+        transition: width 0.3s ease;
+        background: white;
+    }
+
+    nav>ul>li>a:hover::after {
+        width: 100%;
+        /* 호버 시 밑줄 전체 길이 */
+    }
+
+    .sub-menu {
+        display: none;
+    }
+
+    .sub-menu::after {
+        content: "";
+        background-color: #ffffffcc;
+        width: 100%;
+        position: fixed;
+        top: 110px;
+        left: 0;
+        height: 60px;
+        z-index: 1;
+    }
+
+    .sub-menu>li>a {
+        position: relative;
+        z-index: 200;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 25px;
+        color: #888281;
+        background-color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        height: 37px;
+        border-radius: 100px;
+    }
+
+    .sub-menu>li>a:hover {
+        background-color: #BF0B34;
+        color: white;
+    }
+
+    .sub-menu>li:not(:first-child) {
+        margin-left: 10px;
+    }
+
+
+    .logo {
+        width: 33%;
+        margin: auto;
+        text-align: center;
+
+        img {
+            width: 200px;
+        }
+    }
+
+    .util {
+        width: 33%;
+        display: flex;
+        gap: 8px;
+        justify-content: end;
+        align-items: center;
+    }
+
+    .switch-wrap {
+        width: 124px;
+
+        [alt="brand"] {
+            display: none;
+        }
+    }
+
+
+    .top-btn {
+        display: flex;
+        gap: 10px;
+    }
+
+    .menu-btn {
+        display: none;
+        cursor: pointer;
+    }
+}
+
+.top-video {
+    iframe {
+        pointer-events: none;
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+
+    .arrow-bar {
+        position: relative;
+
+        .div-box {
+            width: 100%;
+            height: 50px;
+            background-color: #fff;
+        }
+
+        a img {
+            position: absolute;
+            z-index: 100;
+            top: -60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+.menu-list {
+    width: 100%;
+    padding: 120px 0;
+    border-radius: 0 0 50px 50px;
+    background-color: white;
+
+    .menu-list-btn {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
+    }
+
+    .swiper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        width: 416px;
+        margin-top: 80px;
+        margin-right: 80px;
+
+        img {
+            width: 290px;
+        }
+    }
+
+    .flip-card {
+        display: flex;
+        justify-content: center;
+        width: 372x;
+        height: 465px;
+        /*3d 원근감 효과*/
+        perspective: 1000px;
+    }
+
+    .flip-card-inner {
+        position: relative;
+        width: 372px;
+        transition: transform 0.4s;
+        transform-style: preserve-3d;
+    }
+
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+        /* hover 시 회전 */
+    }
+
+    .card-front {
+        position: absolute;
+        text-align: center;
+
+        h3 {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        img {
+            width: 290px;
+            height: 290px;
+        }
+    }
+
+    .card-back {
+        position: absolute;
+        /* 뒷면 숨기기 */
+        backface-visibility: hidden;
+        transform: rotateY(180deg);
+
+        img {
+            width: 416px;
+        }
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        opacity: 0;
+    }
+
+    .swiper-button-prev {
+        background-image: url(이미지/slide-btn1.png);
+        width: 90px;
+        height: 90px;
+    }
+
+    .swiper-button-next {
+        background-image: url(이미지/slide-btn2.png);
+        width: 90px;
+        height: 90px;
+    }
+
+}
+
+.shop-app {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 120px 0;
+
+    .shop-app-wrap {
+        max-width: 1380px;
+        display: flex;
+        justify-content: center;
+        gap: 80px;
+        padding: 0 50px;
+    }
+
+    .shop-wrap,
+    .app-wrap {
+        display: flex;
+    }
+
+    .shop-left,
+    .app-left {
+        position: relative;
+        background-color: white;
+        border-radius: 30px;
+        padding: 40px;
+        top: -30px;
+        margin-right: -100px;
+        transition: top 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+        /* 그림자 추가 */
+    }
+
+    .shop-left:hover,
+    .app-left:hover {
+        top: -40px;
+    }
+
+    .text-box {
+        h3 {
+            font-size: 24px;
+            word-spacing: -5px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #746D6C;
+            width: 190px;
+        }
+
+        img[alt="plus"] {
+            position: absolute;
+            bottom: 25px;
+        }
+    }
+
+    .shop-right,
+    .app-right {
+        width: 100%;
+
+        img {
+            max-width: 420px;
+            border-radius: 40px;
+        }
+    }
+}
+
+.tea-recipe {
+    width: 100%;
+    min-height: 766px;
+    background-color: white;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+
+    .recipe-inner {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1380px;
+        height: 487px;
+        padding: 140px;
+        margin: 0 auto;
+    }
+
+    .tea-left-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        max-width: 40%;
+        height: 482px;
+        margin-right: 5%;
+    }
+
+    .tea-textbox {
+        display: flex;
+        flex-direction: column;
+        margin-top: 80px;
+
+        h4 {
+            font-family: ;
+            font-size: 24px;
+            color: #382F2D;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-family: 'Batang';
+            font-size: 60px;
+            color: #BF0B34;
+            margin-top: 30px;
+            white-space: nowrap;
+        }
+
+        h3 {
+            font-size: 30px;
+            color: #382F2D;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: 500;
+            color: #746D6C;
+        }
+    }
+
+    .tea-btn-wrap {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .tab-btn {
+        width: 72px;
+        height: 20px;
+
+        .tab {
+            width: 14px;
+            height: 14px;
+            border-radius: 50px;
+            border: none;
+        }
+
+        .tab-active {
+            background: #BF0B34;
+        }
+    }
+
+    .detail-btn img[alt="d2"] {
+        display: none;
+    }
+
+    .tea-right-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 55%;
+        height: 482px;
+        border: 2px solid #F0D0A2;
+        border-radius: 40px;
+        background-color: white;
+
+        img {
+            width: 465px;
+        }
+    }
+
+    .tea-left-wrap>.tea-textbox,
+    .tea-right-wrap>.tea-img {
+        display: none;
+    }
+
+    .tea-left-wrap>.show,
+    .tea-right-wrap>.show {
+        display: flex;
+    }
+
+}
+
+.monthly-shop {
+    padding: 120px 0;
+
+    .shop-title {
+        margin: 0 212px;
+        text-align: center;
+
+        h3 {
+            font-size: 40px;
+            color: #382F2D;
+        }
+
+        h5 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-top: 10px;
+            color: #746D6C;
+        }
+    }
+
+    .swiper {
+        width: 100%;
+    }
+
+
+    .swiper-wrapper {
+        display: flex;
+        justify-content: center;
+        height: 520px;
+        margin-top: 50px;
+    }
+
+    .swiper-slide {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 80px;
+        width: 312px;
+
+        img {
+            width: 312px;
+            height: 312px;
+            border-radius: 20px;
+        }
+
+        h5 {
+            width: 150px;
+            height: 28px;
+            font-size: 20px;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 20px;
+            border-radius: 10px;
+            background-color: #F7EEDD;
+            color: #382F2D;
+        }
+    }
+
+    /* 중앙 슬라이드 강조 (확대 + 밝게) */
+    .shopSwiper .swiper-slide-active {
+        transform: scale(1.3);
+        z-index: 2;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #382f2d66;
+        color: #fff;
+    }
+
+    .shopSwiper .swiper-slide-active {
+        animation: spring 0.6s ease;
+        opacity: 1;
+    }
+
+    /* Swiper 기본 화살표 아이콘 크기 줄이기 */
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        background-size: 50% 50%;
+        /* SVG 자체 크기 조절 */
+    }
+}
+
+.call-counsel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    .call-wrap {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        padding: 0 50px 100px 50px;
+        gap: 20px;
+
+        a {
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+            padding: 40px;
+            border: 2px solid #F0D0A2;
+            border-radius: 20px;
+            position: relative;
+
+            h2 {
+                font-size: 36px;
+                color: #382F2D;
+            }
+
+            p {
+                width: 300px;
+                font-size: 18px;
+                color: #746D6C;
+                margin-top: 10px;
+            }
+
+            img[alt="plus"] {
+                position: absolute;
+                bottom: 40px;
+                right: 40px;
+            }
+        }
+    }
+
+    .call-img {
+        img {
+            width: 890px;
+            height: 343px;
+            border-radius: 20px;
+        }
+    }
+}
+
+.video {
+    width: 100%;
+    background-color: white;
+    border-radius: 50px 50px 0 0;
+
+    .video-wrap {
+        display: flex;
+        flex-direction: column;
+        max-width: 1340px;
+
+        padding: 120px 140px 240px 140px;
+        margin: 0 auto;
+
+
+        iframe {
+            aspect-ratio: 16/9;
+            border-radius: 30px;
+        }
+
+        .video-text {
+            display: flex;
+            justify-content: space-between;
+            height: 126px;
+            padding: 0 20px;
+            margin-top: 30px;
+
+            h2 {
+                font-size: 54px;
+                color: #BF0B34;
+                white-space: nowrap;
+            }
+
+            p {
+                width: 757px;
+                font-size: 20px;
+            }
+
+            span {
+                font-size: 20px;
+                font-weight: 700;
+                color: #BF0B34;
+            }
+        }
+    }
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    position: relative;
+    width: 100%;
+    height: 850px;
+    background-color: #BF0B34;
+    border-radius: 50px 50px 0 0;
+    color: white;
+}
+
+.footer-logo {
+    margin: auto;
+
+    img {
+        width: 640px;
+    }
+}
+
+.footer-wrap {
+    height: 34%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 140px;
+
+    .left-wrap {
+        h3 {
+            font-size: 22px;
+        }
+
+        h4 {
+            font-size: 22px;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        .footer-text2 {
+            margin-top: 40px;
+            font-size: 14px;
+
+            dl {
+                display: flex;
+                gap: 10px;
+
+                dt {
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .footer-btn {
+            width: 410px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+
+            button {
+                font-size: 22px;
+                font-weight: 700;
+                color: #BF0B34;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 30px;
+            }
+        }
+    }
+
+    .right-wrap {
+        .call {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+
+            dl {
+                display: flex;
+                flex-direction: column;
+
+                dt {
+                    font-size: 18px;
+                }
+
+                dd {
+                    margin-top: 12px;
+                    font-size: 36px;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .time {
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        dl {
+            display: flex;
+        }
+
+    }
+}
+
+.footer-sns {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 0 140px 40px 140px;
+    height: 20%;
+
+    p {
+        margin-top: 40px;
+    }
+}
+
+
+/*이달의오픈매장 스프링효과*/
+@keyframes spring {
+    0% {
+        transform: scale(1.2);
+    }
+
+    30% {
+        transform: scale(1.3);
+    }
+
+    70% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1.3);
+    }
+}
+
+
+@media screen and (max-width: 1450px) {
+    .shop-app {
+        .shop-app-wrap {
+            gap: 20px;
+        }
+
+        .shop-left,
+        .app-left {
+            width: 30%;
+            height: 70%;
+        }
+
+        .text-box {
+            h3 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 14px;
+                width: 150px;
+            }
+
+            img[alt="shop"],
+            img[alt="app"] {
+                width: 90px;
+            }
+
+            img[alt="plus"] {
+                width: 30px;
+            }
+        }
+
+        .shop-right,
+        .app-right {
+            img {
+                max-width: 360px;
+            }
+        }
+    }
+
+    .call-wrap {
+        a {
+            min-width: 40%;
+        }
+
+        .call-img {
+            img {
+                width: 100%;
+                object-fit: fill;
+                min-width: 352px;
+                border-radius: 20px;
+            }
+        }
+    }
+
+    .video .video-wrap .video-text {
+
+        h2 {
+            font-size: 45px;
+            margin-right: 20px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        span {
+            font-size: 20px;
+            font-weight: 700;
+            color: #BF0B34;
+        }
+    }
+
+}
+
+@media screen and (max-width: 1180px) {
+
+    nav,
+    .top-section .util {
+        display: none;
+    }
+
+    .logo {
+        margin: auto;
+        text-align: center;
+
+        img {
+            width: 120px;
+        }
+    }
+
+    .menu-btn {
+        display: flex;
+    }
+
+    .tea-recipe {
+        .tea-left-wrap {
+            min-width: 313px;
+        }
+
+        .tea-textbox {
+
+            h4 {
+                font-size: 20px;
+            }
+
+            h2 {
+                font-size: 50px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .monthly-shop {
+        .swiper-slide {
+            margin: 0 80px;
+
+            img {
+                width: 240px;
+                height: 240px;
+            }
+
+            h5 {
+                line-height: 28px;
+                font-size: 16px;
+            }
+        }
+
+        .video .video-wrap {
+            padding: 100px 20px;
+
+            .video-text {
+                height: 100%;
+                flex-direction: column;
+
+                h2 {
+                    font-size: 45px;
+                }
+
+                p {
+                    width: 730px;
+                    font-size: 18px;
+                    margin-top: 30px;
+                }
+            }
+        }
+
+        .footer-logo img {
+            width: 460px;
+        }
+
+        .footer-wrap {
+            padding: 0 50px;
+        }
+
+        .right-wrap.call.time {
+            margin-top: 20px;
+        }
+
+        .footer-sns {
+            padding: 50px;
+
+            p {
+                margin-top: 10px;
+            }
+        }
+
+        .shop-app {
+            margin: 120px 0;
+
+            .shop-app-wrap {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 80px;
+            }
+
+            .shop-wrap,
+            .app-wrap {
+                display: flex;
+                align-items: center;
+                align-content: ;
+            }
+
+            .shop-left,
+            .app-left {
+                height: 80%;
+                top: -30px;
+                margin-right: -50px;
+            }
+
+            .text-box {
+                img[alt="plus"] {
+                    right: 25px;
+                }
+            }
+
+            .shop-right,
+            .app-right {
+                img {
+                    border-radius: 40px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 770px) {
+
+
+    .shop-app-wrap {
+        flex-direction: column;
+        align-items: center;
+
+        .shop-left,
+        .app-left {
+            width: 100%;
+            height: 70%;
+        }
+
+        .shop-right,
+        .app-right {
+            img {
+                max-width: 360px;
+            }
+        }
+    }
+
+    .tea-recipe {
+        .recipe-inner {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            padding: 60px 20px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .tea-left-wrap {
+            order: 2;
+            min-width: 100%;
+            height: 300px;
+            margin: 0;
+
+            .tea-textbox {
+                margin-top: 0;
+            }
+
+            .tea-btn-wrap {
+                display: flex;
+            }
+
+        }
+
+        .tea-right-wrap {
+            order: 1;
+            width: 100%;
+
+            img {
+                width: 465px;
+                padding: 20px;
+                margin: auto;
+            }
+        }
+
+    }
+
+    .monthly-shop {
+        padding: 100px 0;
+
+        .shop-title {
+            margin: 0;
+
+            h3 {
+                font-size: 32px;
+            }
+
+            h5 {
+                font-size: 16px;
+            }
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            display: none;
+        }
+    }
+
+    .call-counsel {
+
+        .call-wrap {
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+
+            a {
+                width: 88%;
+
+
+                h2 {
+                    width: 100%;
+                    font-size: 24px;
+                }
+
+                p {
+                    width: 100%;
+                    font-size: 16px;
+                }
+
+                img[alt="plus"] {
+                    position: absolute;
+                    bottom: 20px;
+                    right: 20px;
+                }
+            }
+
+            .call-img {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .video .video-wrap {
+        padding: 100px 20px;
+
+        .video-text {
+            flex-direction: column;
+
+            h2 {
+                font-size: 24px;
+            }
+
+            p {
+                width: 100%;
+            }
+
+        }
+    }
+
+    .footer-logo {
+        height: 20%;
+        margin: 0 auto;
+        line-height: 200px;
+
+        img {
+            width: 185px;
+        }
+    }
+
+    .footer-wrap {
+        flex-direction: column;
+        width: 100%;
+
+        .left-wrap {
+            order: 2;
+
+            h3 {
+                font-size: 18px;
+            }
+
+            h4 {
+                font-size: 18px;
+            }
+
+            .footer-text2 {
+                margin-top: 20px;
+                font-size: 14px;
+            }
+
+            .footer-btn {
+                width: 300px;
+                margin: 30px 0;
+
+                button {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .right-wrap {
+            order: 1;
+
+            .call {
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+
+                dl {
+                    display: flex;
+                    flex-direction: column;
+
+                    dt {
+                        font-size: 14px;
+                    }
+
+                    dd {
+                        margin-top: 12px;
+                        font-size: 18px;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .time {
+                display: flex;
+                flex-direction: column;
+                font-size: 14px;
+                gap: 10px;
+                margin-top: 40px;
+            }
+
+            dl {
+                display: flex;
+            }
+
+        }
+    }
+
+    .footer-sns {
+        margin-top: 200px;
+        padding: 50px;
+
+        p {
+            margin-top: 20px;
+        }
+    }
+}
