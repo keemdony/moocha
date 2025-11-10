@@ -58,10 +58,10 @@
         </header>
     </div>
     <div class="top-image">
-        <img class="main-image" src="/이미지/sub_cover_menu.jpg" alt="">
+        <img class="main-image" src="이미지/sub_cover_menu.jpg" alt="">
         <div class="arrow-bar">
             <div class="div-box"></div>
-            <a href=""><img src="/이미지/div bar_btn.png" alt=""></a>
+            <a href=""><img src="이미지/div bar_btn.png" alt=""></a>
         </div>
     </div>
     <div class="title-wrap">
@@ -101,34 +101,35 @@
     </div>
     <section class="menu-page">
         <div class="menu-wrap">
-            <div class="menu-bar">
-                <div class="divbox"></div>
-                <div class="name-tab">
-                    <a href="">New 시즌메뉴</a>
-                </div>
-                <div class="name-tab active">
-                    <a href="">베스트셀러</a>
-                </div>
-                <div class="name-tab">
-                    <a href="">밀크티</a>
-                </div>
-                <div class="name-tab">
-                    <a href="">스무디</a>
-                </div>
-                <div class="name-tab">
-                    <a href="">오리지널 티</a>
-                </div>
-                <div class="name-tab">
-                    <a href="">프룻티&모어</a>
-                </div>
-                <div class="name-tab">
-                    <a href="">커피</a>
+            <div class="bar-wrap">
+                <div class="menu-bar">
+                    <div class="name-tab">
+                        <a href="">New 시즌메뉴</a>
+                    </div>
+                    <div class="name-tab active">
+                        <a href="">베스트셀러</a>
+                    </div>
+                    <div class="name-tab">
+                        <a href="">밀크티</a>
+                    </div>
+                    <div class="name-tab">
+                        <a href="">스무디</a>
+                    </div>
+                    <div class="name-tab">
+                        <a href="">오리지널 티</a>
+                    </div>
+                    <div class="name-tab">
+                        <a href="">프룻티&모어</a>
+                    </div>
+                    <div class="name-tab">
+                        <a href="">커피</a>
+                    </div>
                 </div>
             </div>
             <div class="pd-info">
                 <div class="info-wrap">
                     <div class="info-img">
-                        <img src="/이미지/VDRPhvZwEBzUJIfg_20231115.png" alt="">
+                        <img src="이미지/VDRPhvZwEBzUJIfg_20231115.png" alt="">
                     </div>
                     <div class="info-text">
                         <div class="pd-name">
@@ -136,7 +137,8 @@
                             <p>깊고 고소한 우롱차에 코코넛 젤리와 달콤짭쪼름한 밀크폼을 올려 다양한 식감과 함께 부드럽게 즐기는 오리지널티</p>
                         </div>
                         <div class="pd-table">
-                            <table border="1">
+                            <table border="0">
+                                <caption>영양정보</caption>
                                 <thead>
                                     <tr>
                                         <th colspan="2">구분</th>
@@ -276,10 +278,12 @@
 
     <script>
 
-        //헤더
-        let 이전위치 = window.scrollY;
+        <script>
 
-        window.addEventListener('scroll', function () {
+        //1.헤더
+            let 이전위치 = window.scrollY;
+
+            window.addEventListener('scroll', function () {
 
             const 현재위치 = window.scrollY;
             document.querySelector('.top-section').style.transition = 'all 0.2s linear';
@@ -291,43 +295,100 @@
             else if (현재위치 < 이전위치) {
                 // 스크롤 올림
                 document.querySelector('.top-section').style.backgroundColor = '#bf0b34';
-                document.querySelector('.top-section').style.transform = 'translateY(0px)';
+            document.querySelector('.top-section').style.transform = 'translateY(0px)';
 
-                if (window.scrollY == 0) {
-                    document.querySelector('.top-section').style.backgroundColor = 'transparent';
-                    document.querySelector('.top-section').style.transition = 'all 0s linear 1.5s';
-                    console.log(111);
+            if (window.scrollY == 0) {
+                document.querySelector('.top-section').style.backgroundColor = 'transparent';
+            document.querySelector('.top-section').style.transition = 'all 0s linear 1.5s';
+            console.log(111);
                 } else {
-                    document.querySelector('.top-section').style.backgroundColor = '#bf0b34';
+                document.querySelector('.top-section').style.backgroundColor = '#bf0b34';
                 }
             }
 
             이전위치 = 현재위치;
         })
 
-        //메뉴 탭
-        function SelectorAll(el) {
+
+
+            //2.메뉴 카테고리 슬라이드
+            const barWrap = document.querySelector('.bar-wrap');
+            const menuBar = document.querySelector('.menu-bar');
+
+            let isDragging = false;
+            let startX;
+            let scrollLeft;
+
+        barWrap.addEventListener('mousedown', (e) => {
+                isDragging = true;
+            startX = e.pageX - barWrap.offsetLeft;
+            scrollLeft = menuBar.offsetLeft;
+            barWrap.style.cursor = 'grabbing';
+        });
+
+        barWrap.addEventListener('mouseleave', () => {
+                isDragging = false;
+            barWrap.style.cursor = 'grab';
+        });
+
+        barWrap.addEventListener('mouseup', () => {
+                isDragging = false;
+            barWrap.style.cursor = 'grab';
+        });
+
+        barWrap.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - barWrap.offsetLeft;
+            const walk = x - startX;
+            menuBar.style.transform = `translateX(${scrollLeft + walk}px)`;
+        });
+
+        // 터치 지원
+        barWrap.addEventListener('touchstart', (e) => {
+                isDragging = true;
+            startX = e.touches[0].pageX - barWrap.offsetLeft;
+            scrollLeft = menuBar.offsetLeft;
+        });
+
+        barWrap.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX - barWrap.offsetLeft;
+            const walk = x - startX;
+            menuBar.style.transform = `translateX(${scrollLeft + walk}px)`;
+        });
+
+        barWrap.addEventListener('touchend', () => {
+                isDragging = false;
+        });
+
+
+
+            //3.메뉴 탭
+            function SelectorAll(el) {
             return document.querySelectorAll(el);
         }
 
-        const nameTabs = SelectorAll(".name-tab");
-        const listPages = SelectorAll(".list-page");
+            const nameTabs = SelectorAll(".name-tab");
+            const listPages = SelectorAll(".list-page");
 
-        //탭클릭 이벤트
-        for (let i = 0; i < nameTabs.length; i++) {
-            nameTabs[i].addEventListener("click", function (e) {
-                e.preventDefault(); // a태그 기본 동작 방지
-                for (let j = 0; j < nameTabs.length; j++) {
-                    nameTabs[j].classList.remove("active");
-                    listPages[j].classList.remove("show");
-                }
+            //탭클릭 이벤트
+            for (let i = 0; i < nameTabs.length; i++) {
+                nameTabs[i].addEventListener("click", function (e) {
+                    e.preventDefault(); // a태그 기본 동작 방지
+                    for (let j = 0; j < nameTabs.length; j++) {
+                        nameTabs[j].classList.remove("active");
+                        listPages[j].classList.remove("show");
+                    }
 
-                //클릭된 탭만 활성화
-                nameTabs[i].classList.add("active");
-                listPages[i].classList.add("show");
-            });
+                    //클릭된 탭만 활성화
+                    nameTabs[i].classList.add("active");
+                    listPages[i].classList.add("show");
+                });
         }
 
+
+    </script>
 
     </script>
 </body>

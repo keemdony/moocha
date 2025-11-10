@@ -298,40 +298,56 @@ li {
 }
 
 .menu-wrap {
-    width: 60%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.menu-bar {
+.bar-wrap {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 60%;
     height: 60px;
     border-radius: 30px;
     border: 1px solid #BF0B34;
-    padding: 0 50px;
-    box-sizing: border-box;
+    overflow: hidden;
+    cursor: grab;
+}
+
+.menu-bar {
+    display: flex;
+    transition: transform 0.4s ease;
+    gap: 10px;
+    /* 메뉴 간격 */
 
     .name-tab {
         display: flex;
         color: #D9D9D9;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 700;
         padding: 10px 30px;
-    }
 
-    .name-tab.active {
-        background-color: #BF0B34;
-        color: #fff;
-        border-radius: 30px;
-        padding: 10px 30px;
+        flex: 0 0 auto;
+        /* 한 줄 고정 */
+        cursor: pointer;
+        white-space: nowrap;
+        user-select: none;
+        /* 드래그 시 텍스트 선택 방지 */
     }
 }
 
+.name-tab.active {
+    background-color: #BF0B34;
+    color: #fff;
+    border-radius: 30px;
+    padding: 10px 30px;
+}
+
+
 .menu-list {
+    width: 80%;
     margin: 50px 0;
 
     .list-page {
@@ -481,78 +497,23 @@ footer {
 }
 
 @media screen and (max-width: 1450px) {
-    .shop-app {
-        .shop-app-wrap {
-            gap: 20px;
-        }
 
-        .shop-left,
-        .app-left {
-            width: 30%;
-            height: 70%;
-        }
-
-        .text-box {
-            h3 {
-                font-size: 20px;
-            }
-
-            p {
-                font-size: 14px;
-                width: 150px;
-            }
-
-            img[alt="shop"],
-            img[alt="app"] {
-                width: 90px;
-            }
-
-            img[alt="plus"] {
-                width: 30px;
-            }
-        }
-
-        .shop-right,
-        .app-right {
-            img {
-                max-width: 360px;
-            }
-        }
+    .bar-wrap {
+        width: 80%;
     }
 
-    .call-wrap {
-        a {
-            min-width: 40%;
-        }
-
-        .call-img {
-            img {
-                width: 100%;
-                object-fit: fill;
-                min-width: 352px;
-                border-radius: 20px;
-            }
-        }
+    .menu-bar {
+        display: flex;
+        transition: transform 0.4s ease;
+        will-change: transform;
     }
 
-    .video .video-wrap .video-text {
-
-        h2 {
-            font-size: 45px;
-            margin-right: 20px;
-        }
-
-        p {
-            font-size: 18px;
-        }
-
-        span {
-            font-size: 20px;
-            font-weight: 700;
-            color: #BF0B34;
+    .menu-list {
+        .list-page.show {
+            display: flex;
+            flex-wrap: wrap;
         }
     }
-
 }
 
 @media screen and (max-width: 1180px) {
@@ -575,121 +536,27 @@ footer {
         display: flex;
     }
 
-    .tea-recipe {
-        .tea-left-wrap {
-            min-width: 313px;
-        }
-
-        .tea-textbox {
-
-            h4 {
-                font-size: 20px;
-            }
-
-            h2 {
-                font-size: 50px;
-            }
-
-            h3 {
-                font-size: 20px;
-            }
-
-            p {
-                font-size: 16px;
-            }
-        }
+    .menu-wrap {
+        width: 100%;
     }
 
-    .monthly-shop {
-        .swiper-slide {
-            margin: 0 80px;
+    .bar-wrap {
+        width: 80%;
+    }
 
-            img {
-                width: 240px;
-                height: 240px;
-            }
+    .menu-bar {
+        display: flex;
+        transition: transform 0.4s ease;
+        will-change: transform;
+    }
 
-            h5 {
-                line-height: 28px;
-                font-size: 16px;
-            }
-        }
+    .menu-list {
+        width: 80%;
+        margin: 50px 0;
 
-        .video .video-wrap {
-            padding: 100px 20px;
-
-            .video-text {
-                height: 100%;
-                flex-direction: column;
-
-                h2 {
-                    font-size: 45px;
-                }
-
-                p {
-                    width: 730px;
-                    font-size: 18px;
-                    margin-top: 30px;
-                }
-            }
-        }
-
-        .footer-logo img {
-            width: 460px;
-        }
-
-        .footer-wrap {
-            padding: 0 50px;
-        }
-
-        .right-wrap.call.time {
-            margin-top: 20px;
-        }
-
-        .footer-sns {
-            padding: 50px;
-
-            p {
-                margin-top: 10px;
-            }
-        }
-
-        .shop-app {
-            margin: 120px 0;
-
-            .shop-app-wrap {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 80px;
-            }
-
-            .shop-wrap,
-            .app-wrap {
-                display: flex;
-                align-items: center;
-                align-content: ;
-            }
-
-            .shop-left,
-            .app-left {
-                height: 80%;
-                top: -30px;
-                margin-right: -50px;
-            }
-
-            .text-box {
-                img[alt="plus"] {
-                    right: 25px;
-                }
-            }
-
-            .shop-right,
-            .app-right {
-                img {
-                    border-radius: 40px;
-                }
+        .list-page {
+            .scroll-item {
+                margin: 50px;
             }
         }
     }
@@ -697,137 +564,31 @@ footer {
 
 @media screen and (max-width: 770px) {
 
-
-    .shop-app-wrap {
-        flex-direction: column;
-        align-items: center;
-
-        .shop-left,
-        .app-left {
-            width: 100%;
-            height: 70%;
-        }
-
-        .shop-right,
-        .app-right {
-            img {
-                max-width: 360px;
-            }
-        }
+    .bar-wrap {
+        width: 80%;
     }
 
-    .tea-recipe {
-        .recipe-inner {
+    .menu-bar {
+        display: flex;
+        transition: transform 0.4s ease;
+        will-change: transform;
+    }
+
+    .menu-list {
+        width: 100%;
+        margin: 50px 0;
+
+        .list-page {
+            .scroll-item {
+                margin: 80px;
+            }
+        }
+
+        .list-page.show {
             display: flex;
-            flex-direction: column;
-            width: 100%;
-            height: 100%;
-            padding: 60px 20px;
-            margin: 0 auto;
-            gap: 40px;
+            flex-wrap: wrap;
         }
 
-        .tea-left-wrap {
-            order: 2;
-            min-width: 100%;
-            height: 300px;
-            margin: 0;
-
-            .tea-textbox {
-                margin-top: 0;
-            }
-
-            .tea-btn-wrap {
-                display: flex;
-            }
-
-        }
-
-        .tea-right-wrap {
-            order: 1;
-            width: 100%;
-
-            img {
-                width: 465px;
-                padding: 20px;
-                margin: auto;
-            }
-        }
-
-    }
-
-    .monthly-shop {
-        padding: 100px 0;
-
-        .shop-title {
-            margin: 0;
-
-            h3 {
-                font-size: 32px;
-            }
-
-            h5 {
-                font-size: 16px;
-            }
-        }
-
-        .swiper-button-prev,
-        .swiper-button-next {
-            display: none;
-        }
-    }
-
-    .call-counsel {
-
-        .call-wrap {
-            width: 100%;
-            flex-direction: column;
-            align-items: center;
-
-            a {
-                width: 88%;
-
-
-                h2 {
-                    width: 100%;
-                    font-size: 24px;
-                }
-
-                p {
-                    width: 100%;
-                    font-size: 16px;
-                }
-
-                img[alt="plus"] {
-                    position: absolute;
-                    bottom: 20px;
-                    right: 20px;
-                }
-            }
-
-            .call-img {
-                img {
-                    width: 100%;
-                }
-            }
-        }
-    }
-
-    .video .video-wrap {
-        padding: 100px 20px;
-
-        .video-text {
-            flex-direction: column;
-
-            h2 {
-                font-size: 24px;
-            }
-
-            p {
-                width: 100%;
-            }
-
-        }
     }
 
     .footer-logo {

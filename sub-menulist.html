@@ -103,27 +103,29 @@
     </div>
     <section class="menu-page">
         <div class="menu-wrap">
-            <div class="menu-bar">
-                <div class="name-tab">
-                    <a href="">New 시즌메뉴</a>
-                </div>
-                <div class="name-tab active">
-                    <a href="">베스트셀러</a>
-                </div>
-                <div class="name-tab">
-                    <a href="">밀크티</a>
-                </div>
-                <div class="name-tab">
-                    <a href="">스무디</a>
-                </div>
-                <div class="name-tab">
-                    <a href="">오리지널 티</a>
-                </div>
-                <div class="name-tab">
-                    <a href="">프룻티&모어</a>
-                </div>
-                <div class="name-tab">
-                    <a href="">커피</a>
+            <div class="bar-wrap">
+                <div class="menu-bar">
+                    <div class="name-tab">
+                        <a href="">New 시즌메뉴</a>
+                    </div>
+                    <div class="name-tab active">
+                        <a href="">베스트셀러</a>
+                    </div>
+                    <div class="name-tab">
+                        <a href="">밀크티</a>
+                    </div>
+                    <div class="name-tab">
+                        <a href="">스무디</a>
+                    </div>
+                    <div class="name-tab">
+                        <a href="">오리지널 티</a>
+                    </div>
+                    <div class="name-tab">
+                        <a href="">프룻티&모어</a>
+                    </div>
+                    <div class="name-tab">
+                        <a href="">커피</a>
+                    </div>
                 </div>
             </div>
             <div class="menu-list">
@@ -407,7 +409,7 @@
 
     <script>
 
-        //헤더
+        //1.헤더
         let 이전위치 = window.scrollY;
 
         window.addEventListener('scroll', function () {
@@ -436,7 +438,62 @@
             이전위치 = 현재위치;
         })
 
-        //메뉴 탭`~
+
+
+        //2.메뉴 카테고리 슬라이드
+        const barWrap = document.querySelector('.bar-wrap');
+        const menuBar = document.querySelector('.menu-bar');
+
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+
+        barWrap.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - barWrap.offsetLeft;
+            scrollLeft = menuBar.offsetLeft;
+            barWrap.style.cursor = 'grabbing';
+        });
+
+        barWrap.addEventListener('mouseleave', () => {
+            isDragging = false;
+            barWrap.style.cursor = 'grab';
+        });
+
+        barWrap.addEventListener('mouseup', () => {
+            isDragging = false;
+            barWrap.style.cursor = 'grab';
+        });
+
+        barWrap.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - barWrap.offsetLeft;
+            const walk = x - startX;
+            menuBar.style.transform = `translateX(${scrollLeft + walk}px)`;
+        });
+
+        // 터치 지원
+        barWrap.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX - barWrap.offsetLeft;
+            scrollLeft = menuBar.offsetLeft;
+        });
+
+        barWrap.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX - barWrap.offsetLeft;
+            const walk = x - startX;
+            menuBar.style.transform = `translateX(${scrollLeft + walk}px)`;
+        });
+
+        barWrap.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+
+
+        //3.메뉴 탭
         function SelectorAll(el) {
             return document.querySelectorAll(el);
         }
