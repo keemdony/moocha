@@ -321,6 +321,10 @@ li {
     transition: transform 0.4s ease;
     gap: 10px;
     /* 메뉴 간격 */
+    overflow-x: auto;
+    /* 이게 필수 */
+    scroll-behavior: smooth;
+    /* smooth 옵션 가능 */
 
     .name-tab {
         display: flex;
@@ -336,6 +340,11 @@ li {
         user-select: none;
         /* 드래그 시 텍스트 선택 방지 */
     }
+}
+
+.menu-bar::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
 }
 
 .name-tab.active {
@@ -360,6 +369,10 @@ li {
             text-align: center;
             margin: 20px;
             box-sizing: border-box;
+            transform: scale(1);
+            transition: transform 0.4s ease, filter 0.4s ease;
+            /* 부드러운 전환 */
+
 
             h5 {
                 font-size: 20px;
@@ -369,6 +382,10 @@ li {
             img {
                 width: 240px;
             }
+        }
+
+        .scroll-item:hover {
+            transform: scale(1.1);
         }
     }
 
@@ -518,9 +535,22 @@ footer {
 
 @media screen and (max-width: 1180px) {
 
-    nav,
     .top-section .util {
         display: none;
+    }
+
+    /* 모바일 기본: 숨김 */
+    .top-section nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 110px;
+        left: 0;
+        width: 100%;
+        background-color: #BF0B34;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        z-index: 999;
     }
 
     .logo {
@@ -532,8 +562,53 @@ footer {
         }
     }
 
-    .menu-btn {
+    /* 버튼 클릭 시 나타남 */
+    .top-section nav.active {
         display: flex;
+        height: 800px;
+    }
+
+    /* 햄버거 버튼 보이기 */
+    .top-section .menu-btn {
+        display: flex;
+        position: absolute;
+        line-height: 130px;
+        right: 30px;
+    }
+
+    .top-section {
+
+        nav>ul {
+            flex-direction: column;
+            align-items: start;
+            width: 100%;
+        }
+
+        nav>ul>li {
+            background-color: none;
+            height: 50px;
+            line-height: 50px;
+            padding-left: 30px;
+        }
+
+        nav>ul>li>a {
+            font-size: 20px;
+        }
+
+        nav>ul>li:hover .sub-menu {
+            display: none;
+        }
+
+        .sub-menu {
+            display: none;
+            flex-direction: column;
+        }
+
+        /*투명바 삭제*/
+        .sub-menu::after {
+            height: 0px;
+        }
+
     }
 
     .menu-wrap {
@@ -558,6 +633,26 @@ footer {
             .scroll-item {
                 margin: 50px;
             }
+        }
+    }
+
+        .footer-logo img {
+        width: 460px;
+    }
+
+    .footer-wrap {
+        padding: 0 50px; 
+    }
+
+    .right-wrap.call.time {
+        margin-top: 20px;
+    }
+
+    .footer-sns {
+        padding: 50px;
+
+        p {
+            margin-top: 10px;
         }
     }
 }

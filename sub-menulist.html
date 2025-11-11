@@ -8,6 +8,7 @@
         <link rel="icon" href="이미지/favicon_moocha.png">
         <link rel="apple-touch-icon" href="이미지/favicon_moocha.png">
         <link rel="stylesheet" href="sub-menulist.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body class="container">
@@ -74,10 +75,10 @@
             <a href=""><img src="이미지/nav-arrow (1).svg" alt=""></a>
             <a href="">음료/푸드/MD상품</a>
         </div>
-        <div class="ul-title">
+        <div class="ul-title" data-aos="fade-up" data-aos-delay="300">
             <h2>음료/푸드/MD상품</h2>
         </div>
-        <div class="ul-btn">
+        <div class="ul-btn" data-aos="fade-up" data-aos-delay="300">
             <div class="drink">
                 <span></span>
                 <span></span>
@@ -128,7 +129,7 @@
                     </div>
                 </div>
             </div>
-            <div class="menu-list">
+            <div class="menu-list" data-aos="fade-up" data-aos-delay="600">
                 <div class="inner">
                     <ul class="list-page">
                         <li class="scroll-item">
@@ -439,57 +440,44 @@
         })
 
 
+        //헤더 메뉴 햄버거 토글
+        const menuBtn = document.querySelector('.menu-btn');
+        const menu = document.querySelector('.top-section nav');
+
+        menuBtn.addEventListener('click', (e) => {
+            e.preventDefault(); //a태그 기본동작 방지
+            menu.classList.toggle('active');
+        });
+
 
         //2.메뉴 카테고리 슬라이드
         const barWrap = document.querySelector('.bar-wrap');
         const menuBar = document.querySelector('.menu-bar');
+        const nameTab = document.querySelectorAll('.name-tab');
 
-        let isDragging = false;
-        let startX;
-        let scrollLeft;
+        nameTab.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabRect = tab.getBoundingClientRect();
+                const wrapRect = barWrap.getBoundingClientRect();
 
-        barWrap.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.pageX - barWrap.offsetLeft;
-            scrollLeft = menuBar.offsetLeft;
-            barWrap.style.cursor = 'grabbing';
+                // 메뉴가 왼쪽으로 넘어가야 하는 경우
+                if (tabRect.left < wrapRect.left) {
+                    menuBar.scrollBy({
+                        left: tabRect.left - wrapRect.left, // 이동 거리
+                        behavior: 'smooth'
+                    });
+                }
+
+                // 메뉴가 오른쪽으로 넘어가야 하는 경우
+                if (tabRect.right > wrapRect.right) {
+                    menuBar.scrollBy({
+                        left: tabRect.right - wrapRect.right,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
 
-        barWrap.addEventListener('mouseleave', () => {
-            isDragging = false;
-            barWrap.style.cursor = 'grab';
-        });
-
-        barWrap.addEventListener('mouseup', () => {
-            isDragging = false;
-            barWrap.style.cursor = 'grab';
-        });
-
-        barWrap.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.pageX - barWrap.offsetLeft;
-            const walk = x - startX;
-            menuBar.style.transform = `translateX(${scrollLeft + walk}px)`;
-        });
-
-        // 터치 지원
-        barWrap.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            startX = e.touches[0].pageX - barWrap.offsetLeft;
-            scrollLeft = menuBar.offsetLeft;
-        });
-
-        barWrap.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            const x = e.touches[0].pageX - barWrap.offsetLeft;
-            const walk = x - startX;
-            menuBar.style.transform = `translateX(${scrollLeft + walk}px)`;
-        });
-
-        barWrap.addEventListener('touchend', () => {
-            isDragging = false;
-        });
 
 
 
@@ -515,8 +503,16 @@
                 listPages[i].classList.add("show");
             });
         }
+    </script>
 
-
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,   // 애니메이션 지속 시간 (ms)
+            easing: 'ease-out-cubic', // 움직임 곡선
+            once: true,      // 한 번만 실행 (스크롤 위로 올려도 재실행 안 함)
+        });
     </script>
 </body>
 

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
     <link rel="icon" href="이미지/favicon_moocha.png">
     <link rel="apple-touch-icon" href="이미지/favicon_moocha.png">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body class="container">
@@ -73,7 +74,7 @@
     </div>
     <main>
         <section class="menu-list">
-            <div class="menu-list-btn">
+            <div class="menu-list-btn" data-aos="fade-up">
                 <div class="new-btn">
                     <span></span>
                     <span></span>
@@ -89,7 +90,7 @@
                     <a href="http://127.0.0.1:5500/sub-menulist.html">베스트메뉴</a>
                 </div>
             </div>
-            <div class="swiper mySwiper">
+            <div class="swiper mySwiper" data-aos="fade-up">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="flip-card">
@@ -296,12 +297,13 @@
         </section>
         <section class="tea-recipe">
             <div class="recipe-inner">
-                <div class="tea-left-wrap">
+                <div class="tea-left-wrap" data-aos="fade-up">
                     <div class="tea-textbox show">
-                        <h4>TEA PECIPE</h4>
-                        <h2>Original Tea</h2>
-                        <h3>오리지널 티</h3>
-                        <p>티백이나 가루가 아닌 황실에 바치던 잎차만 골라 1분 1초도 어기지 않고 차마다 다른 황금률로 우려 한 잔 한 잔 부드러움을 더해 만듭니다.</p>
+                        <h4 data-aos="fade-right" data-aos-delay="100">TEA PECIPE</h4>
+                        <h2 data-aos="fade-right" data-aos-delay="200">Original Tea</h2>
+                        <h3 data-aos="fade-right" data-aos-delay="200">오리지널 티</h3>
+                        <p data-aos="fade-right" data-aos-delay="300">티백이나 가루가 아닌 황실에 바치던 잎차만 골라 1분 1초도 어기지 않고 차마다 다른
+                            황금률로 우려 한 잔 한 잔 부드러움을 더해 만듭니다.</p>
                     </div>
                     <div class="tea-textbox">
                         <h4>TEA PECIPE</h4>
@@ -329,7 +331,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tea-right-wrap">
+                <div class="tea-right-wrap" data-aos="fade-up">
                     <div class="tea-img show">
                         <img src="이미지/tea_recipe_img1.png" alt="tea1">
                     </div>
@@ -347,7 +349,7 @@
                 <h3>이달의 오픈매장</h3>
                 <h5>새로 오픈한 공차 매장 정보를 확인해보세요.</h5>
             </div>
-            <div class="swiper shopSwiper">
+            <div class="swiper shopSwiper" data-aos="fade-up">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <img src="/이미지/성수점.jpg" alt="">
@@ -396,12 +398,12 @@
             </div>
         </section>
         <section class="video">
-            <div class="video-wrap">
+            <div class="video-wrap" data-aos="fade-up">
                 <iframe src="https://www.youtube.com/embed/d-U7gVRuDr4" title="공들여 더하는 행복, 공차 (브랜드 매니페스토)"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <div class="video-text">
+                <div class="video-text" data-aos="fade-up">
                     <h2>황실에 바치는 차 (茶)</h2>
                     <p>無茶는 없을 무(無) 차 차(茶),잡념없이 마시는 차의 뜻으로, 중국 황실에서만 맛 볼 수 있던<span class="cburgundy">프리미엄 퀄리티의 차(茶)를
                             사용합니다.
@@ -508,6 +510,15 @@
             이전위치 = 현재위치;
         })
 
+        //헤더 메뉴 햄버거 토글
+        const menuBtn = document.querySelector('.menu-btn');
+        const menu = document.querySelector('.top-section nav');
+
+        menuBtn.addEventListener('click', (e) => {
+            e.preventDefault(); //a태그 기본동작 방지
+            menu.classList.toggle('active');
+        });
+
 
         //메뉴 슬라이드
         var mySwiper = new Swiper(".mySwiper", {
@@ -562,9 +573,18 @@
                 SelectorAll(".tea-img")[i].classList.add("show");
             });
         }
-
-
     </script>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,   // 애니메이션 지속 시간 (ms)
+            easing: 'ease-out-cubic', // 움직임 곡선
+            once: true,      // 한 번만 실행 (스크롤 위로 올려도 재실행 안 함)
+        });
+    </script>
+
 </body>
 
 </html>

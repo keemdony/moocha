@@ -321,6 +321,10 @@ li {
     transition: transform 0.4s ease;
     gap: 10px;
     /* 메뉴 간격 */
+    overflow-x: auto;
+    /* 이게 필수 */
+    scroll-behavior: smooth;
+    /* smooth 옵션 가능 */
 
     .name-tab {
         display: flex;
@@ -338,11 +342,56 @@ li {
     }
 }
 
+.menu-bar::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+
 .name-tab.active {
     background-color: #BF0B34;
     color: #fff;
     border-radius: 30px;
     padding: 10px 30px;
+}
+
+.menu-list {
+    width: 80%;
+    margin: 50px 0;
+
+    .list-page {
+        display: none;
+
+        .scroll-item {
+            width: 20%;
+            height: 327px;
+            color: #382F2D;
+            text-align: center;
+            margin: 20px;
+            box-sizing: border-box;
+            transform: scale(1);
+            transition: transform 0.4s ease, filter 0.4s ease;
+            /* 부드러운 전환 */
+
+            h5 {
+                font-size: 20px;
+                font-weight: normal;
+            }
+
+            img {
+                width: 240px;
+            }
+        }
+
+        .scroll-item:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    .list-page.show {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
 
 .pd-info {
@@ -362,26 +411,27 @@ li {
     }
 
     .info-text {
-        width: 80%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         margin-left: 30px;
 
-        h3 {
-            font-size: 30px;
-            font-weight: 700;
-        }
+        .pd-name {
+            h3 {
+                font-size: 30px;
+                font-weight: 700;
+            }
 
-        p {
-            font-size: 24px;
-            font-weight: 700;
-            color: #746d6c;
-            margin-top: 10px;
+            p {
+                font-size: 24px;
+                font-weight: 700;
+                color: #746d6c;
+                margin-top: 10px;
+            }
         }
 
         .pd-table {
-            width: 100%;
             display: flex;
         }
 
@@ -554,16 +604,15 @@ footer {
 
 @media screen and (max-width: 1450px) {
 
-
     .pd-info {
-        width: 100%;
+        width: 70%;
 
         .info-wrap {
-            width: 60%;
+            width: 100%;
         }
 
         .info-img {
-            width: 40%;
+            width: 50%;
 
             img {
                 width: 250px;
@@ -571,16 +620,23 @@ footer {
         }
 
         .info-text {
+            width: 70%;
+            margin: auto;
 
-            h3 {
-                font-size: 26px;
-            }
+            .pd-name {
 
-            p {
-                font-size: 20px;
+                h3 {
+                    font-size: 26px;
+                }
+
+                p {
+                    font-size: 20px;
+                }
             }
 
             table {
+                width: 100%;
+
                 caption {
                     font-size: 26px;
                 }
@@ -590,15 +646,28 @@ footer {
                 }
             }
         }
-
     }
+
 }
 
 @media screen and (max-width: 1180px) {
 
-    nav,
     .top-section .util {
         display: none;
+    }
+
+    /* 모바일 기본: 숨김 */
+    .top-section nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 110px;
+        left: 0;
+        width: 100%;
+        background-color: #BF0B34;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        z-index: 999;
     }
 
     .logo {
@@ -610,8 +679,53 @@ footer {
         }
     }
 
-    .menu-btn {
+    /* 버튼 클릭 시 나타남 */
+    .top-section nav.active {
         display: flex;
+        height: 800px;
+    }
+
+    /* 햄버거 버튼 보이기 */
+    .top-section .menu-btn {
+        display: flex;
+        position: absolute;
+        line-height: 130px;
+        right: 30px;
+    }
+
+    .top-section {
+
+        nav>ul {
+            flex-direction: column;
+            align-items: start;
+            width: 100%;
+        }
+
+        nav>ul>li {
+            background-color: none;
+            height: 50px;
+            line-height: 50px;
+            padding-left: 30px;
+        }
+
+        nav>ul>li>a {
+            font-size: 20px;
+        }
+
+        nav>ul>li:hover .sub-menu {
+            display: none;
+        }
+
+        .sub-menu {
+            display: none;
+            flex-direction: column;
+        }
+
+        /*투명바 삭제*/
+        .sub-menu::after {
+            height: 0px;
+        }
+
     }
 
     .menu-wrap {
@@ -629,29 +743,50 @@ footer {
     }
 
     .pd-info {
-    width: 90%;
+        width: 90%;
 
-    .info-wrap {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        margin: 100px 0;
-    }
+        .info-wrap {
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            margin: 100px 0;
+        }
 
-    .info-img {
-        img{
-            width: 374px;
+        .info-img {
+            img {
+                width: 374px;
+            }
+        }
+
+        .info-text {
+
+            table {
+                white-space: wrap;
+
+                caption {
+                    margin-top: 10px;
+                }
+            }
         }
     }
 
-    .info-text {
+        .footer-logo img {
+        width: 460px;
+    }
 
-        table {
-            white-space: wrap;
+    .footer-wrap {
+        padding: 0 50px; 
+    }
 
-            caption{
-                margin-top: 10px;
-            }
+    .right-wrap.call.time {
+        margin-top: 20px;
+    }
+
+    .footer-sns {
+        padding: 50px;
+
+        p {
+            margin-top: 10px;
         }
     }
 }
@@ -682,7 +817,6 @@ footer {
             display: flex;
             flex-wrap: wrap;
         }
-
     }
 
     .footer-logo {

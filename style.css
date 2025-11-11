@@ -36,10 +36,6 @@ li {
         transition: all 0.3s ease-in-out;
     }
 
-    /* .hide{
-    visibility: hidden;
-} */
-
     nav>ul {
         display: flex;
         gap: 20px;
@@ -153,6 +149,7 @@ li {
 
     .menu-btn {
         display: none;
+
         cursor: pointer;
     }
 }
@@ -195,158 +192,158 @@ li {
         gap: 20px;
 
         .new-btn,
-        .best-btn{
+        .best-btn {
+            display: flex;
+            position: relative;
+        }
+
+        .new-btn>span,
+        .best-btn>span {
+            display: inline-block;
+            width: 56px;
+            aspect-ratio: 1;
+            background: #F7EEDD;
+            transition: .45s;
+            position: absolute;
+            left: 0;
+        }
+
+        .new-btn>span:nth-child(1),
+        .best-btn>span:nth-child(1) {
+            border-radius: 50% 0 0 50%;
+        }
+
+        .new-btn>span:nth-child(2),
+        .best-btn>span:nth-child(2) {
+            left: 46px;
+        }
+
+        .new-btn>span:nth-child(3),
+        .best-btn>span:nth-child(3) {
+            left: 94px;
+        }
+
+        .new-btn>span:nth-child(4),
+        .best-btn>span:nth-child(4) {
+            border-radius: 0 50% 50% 0;
+            left: 142px;
+        }
+
+        .new-btn:hover>span,
+        .best-btn:hover>span {
+            border-radius: 50%;
+            background-color: #C10230;
+        }
+
+        .new-btn:hover>a,
+        .best-btn:hover>a {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .new-btn>a,
+        .best-btn>a {
+            left: 0;
+            position: absolute;
+            display: flex;
+            width: 198px;
+            height: 56px;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: #382F2D;
+            transition: .45s;
+            position: relative;
+            z-index: 2;
+        }
+    }
+
+    .swiper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide {
         display: flex;
-        position: relative;
-    }
-
-    .new-btn>span,
-    .best-btn>span{
-    display: inline-block;
-    width: 56px;
-    aspect-ratio: 1;
-    background: #F7EEDD;
-    transition: .45s;
-    position: absolute;
-    left: 0;
-}
-
-.new-btn>span:nth-child(1),
-.best-btn>span:nth-child(1){
-border-radius: 50% 0 0 50%;
-}
-
-.new-btn>span:nth-child(2),
-.best-btn>span:nth-child(2){
-left: 46px;
-}
-
-.new-btn>span:nth-child(3),
-.best-btn>span:nth-child(3){
-left: 94px;
-}
-
-.new-btn>span:nth-child(4),
-.best-btn>span:nth-child(4){
-border-radius: 0 50% 50% 0;
-left: 142px;
-}
-
-.new-btn:hover>span,
-.best-btn:hover>span{
-border-radius: 50%;
-background-color: #C10230;
-}
-
-.new-btn:hover>a,
-.best-btn:hover>a{
-color: #fff;
-font-weight: 700;
-}
-
-.new-btn>a,
-.best-btn>a{
-left: 0;
-position: absolute;
-display: flex;
-width: 198px;
-height: 56px;
-align-items: center;
-justify-content: center;
-font-size: 1.25rem;
-color: #382F2D;
-transition: .45s;
-position: relative;
-z-index: 2;
-}
-}
-
-.swiper {
-    width: 100%;
-    height: 100%;
-}
-
-.swiper-slide {
-    display: flex;
-    justify-content: center;
-    width: 416px;
-    margin-top: 80px;
-    margin-right: 80px;
-
-    img {
-        width: 290px;
-    }
-}
-
-.flip-card {
-    display: flex;
-    justify-content: center;
-    width: 372x;
-    height: 465px;
-    /*3d 원근감 효과*/
-    perspective: 1000px;
-}
-
-.flip-card-inner {
-    position: relative;
-    width: 372px;
-    transition: transform 0.4s;
-    transform-style: preserve-3d;
-}
-
-
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-    /* hover 시 회전 */
-}
-
-.card-front {
-    position: absolute;
-    text-align: center;
-
-    h3 {
-        font-size: 16px;
-        margin-top: 20px;
-    }
-
-    p {
-        font-size: 14px;
-        margin-top: 10px;
-    }
-
-    img {
-        width: 290px;
-        height: 290px;
-    }
-}
-
-.card-back {
-    position: absolute;
-    /* 뒷면 숨기기 */
-    backface-visibility: hidden;
-    transform: rotateY(180deg);
-
-    img {
+        justify-content: center;
         width: 416px;
+        margin-top: 80px;
+        margin-right: 80px;
+
+        img {
+            width: 290px;
+        }
     }
-}
 
-.swiper-button-prev,
-.swiper-button-next {
-    opacity: 0;
-}
+    .flip-card {
+        display: flex;
+        justify-content: center;
+        width: 372x;
+        height: 465px;
+        /*3d 원근감 효과*/
+        perspective: 1000px;
+    }
 
-.swiper-button-prev {
-    background-image: url(이미지/slide-btn1.png);
-    width: 90px;
-    height: 90px;
-}
+    .flip-card-inner {
+        position: relative;
+        width: 372px;
+        transition: transform 0.4s;
+        transform-style: preserve-3d;
+    }
 
-.swiper-button-next {
-    background-image: url(이미지/slide-btn2.png);
-    width: 90px;
-    height: 90px;
-}
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+        /* hover 시 회전 */
+    }
+
+    .card-front {
+        position: absolute;
+        text-align: center;
+
+        h3 {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        img {
+            width: 290px;
+            height: 290px;
+        }
+    }
+
+    .card-back {
+        position: absolute;
+        /* 뒷면 숨기기 */
+        backface-visibility: hidden;
+        transform: rotateY(180deg);
+
+        img {
+            width: 416px;
+        }
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        opacity: 0;
+    }
+
+    .swiper-button-prev {
+        background-image: url(이미지/slide-btn1.png);
+        width: 90px;
+        height: 90px;
+    }
+
+    .swiper-button-next {
+        background-image: url(이미지/slide-btn2.png);
+        width: 90px;
+        height: 90px;
+    }
 
 }
 
@@ -930,9 +927,22 @@ footer {
 
 @media screen and (max-width: 1180px) {
 
-    nav,
     .top-section .util {
         display: none;
+    }
+
+    /* 모바일 기본: 숨김 */
+    .top-section nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 110px;
+        left: 0;
+        width: 100%;
+        background-color: #BF0B34;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        z-index: 999;
     }
 
     .logo {
@@ -944,8 +954,70 @@ footer {
         }
     }
 
-    .menu-btn {
+    /* 버튼 클릭 시 나타남 */
+    .top-section nav.active {
         display: flex;
+        height: 800px;
+    }
+
+    /* 햄버거 버튼 보이기 */
+    .top-section .menu-btn {
+        display: flex;
+        position: absolute;
+        line-height: 130px;
+        right: 30px;
+    }
+
+    .top-section {
+
+        nav>ul {
+            flex-direction: column;
+            align-items: start;
+            width: 100%;
+        }
+
+        nav>ul>li {
+            background-color: none;
+            height: 50px;
+            line-height: 50px;
+            padding-left: 30px;
+        }
+
+        nav>ul>li>a {
+            font-size: 20px;
+        }
+
+        nav>ul>li:hover .sub-menu {
+            display: none;
+        }
+
+        .sub-menu {
+            display: none;
+            flex-direction: column;
+        }
+
+        /*투명바 삭제*/
+        .sub-menu::after {
+            height: 0px;
+        }
+
+    }
+
+
+    .monthly-shop {
+        .swiper-slide {
+            margin: 0 80px;
+
+            img {
+                width: 240px;
+                height: 240px;
+            }
+
+            h5 {
+                line-height: 28px;
+                font-size: 16px;
+            }
+        }
     }
 
     .tea-recipe {
@@ -973,104 +1045,51 @@ footer {
         }
     }
 
-    .monthly-shop {
-        .swiper-slide {
-            margin: 0 80px;
 
-            img {
-                width: 240px;
-                height: 240px;
+    .video .video-wrap {
+        padding: 100px 20px;
+        flex-direction: column;
+
+        .video-text {
+            height: 100%;
+            flex-direction: column;
+
+            h2 {
+                font-size: 45px;
             }
-
-            h5 {
-                line-height: 28px;
-                font-size: 16px;
-            }
-        }
-
-        .video .video-wrap {
-            padding: 100px 20px;
-
-            .video-text {
-                height: 100%;
-                flex-direction: column;
-
-                h2 {
-                    font-size: 45px;
-                }
-
-                p {
-                    width: 730px;
-                    font-size: 18px;
-                    margin-top: 30px;
-                }
-            }
-        }
-
-        .footer-logo img {
-            width: 460px;
-        }
-
-        .footer-wrap {
-            padding: 0 50px;
-        }
-
-        .right-wrap.call.time {
-            margin-top: 20px;
-        }
-
-        .footer-sns {
-            padding: 50px;
 
             p {
-                margin-top: 10px;
-            }
-        }
-
-        .shop-app {
-            margin: 120px 0;
-
-            .shop-app-wrap {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 80px;
-            }
-
-            .shop-wrap,
-            .app-wrap {
-                display: flex;
-                align-items: center;
-                align-content: ;
-            }
-
-            .shop-left,
-            .app-left {
-                height: 80%;
-                top: -30px;
-                margin-right: -50px;
-            }
-
-            .text-box {
-                img[alt="plus"] {
-                    right: 25px;
-                }
-            }
-
-            .shop-right,
-            .app-right {
-                img {
-                    border-radius: 40px;
-                }
+                width: 730px;
+                font-size: 18px;
+                margin-top: 30px;
             }
         }
     }
+
+    .footer-logo img {
+        width: 460px;
+    }
+
+    .footer-wrap {
+        padding: 0 50px; 
+    }
+
+    .right-wrap.call.time {
+        margin-top: 20px;
+    }
+
+    .footer-sns {
+        padding: 50px;
+
+        p {
+            margin-top: 10px;
+        }
+    }
+
 }
 
+
 @media screen and (max-width: 770px) {
-
-
     .shop-app-wrap {
         flex-direction: column;
         align-items: center;
@@ -1198,6 +1217,7 @@ footer {
 
             p {
                 width: 100%;
+                white-space: wrap;
             }
 
         }
